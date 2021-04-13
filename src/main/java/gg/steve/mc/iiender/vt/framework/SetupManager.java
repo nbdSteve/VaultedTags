@@ -1,5 +1,6 @@
 package gg.steve.mc.iiender.vt.framework;
 
+import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.FileManagerUtil;
@@ -52,6 +53,10 @@ public class SetupManager {
         instance.getServer().getPluginManager().registerEvents(listener, instance);
     }
 
+    public static void registerManagers() {
+        new DatabaseManager();
+    }
+
     public static void registerPlaceholderExpansions(JavaPlugin instance) {
         if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
             LogUtil.info("PlaceholderAPI found, registering expansions with it now...");
@@ -69,9 +74,12 @@ public class SetupManager {
     public static void loadPluginCache() {
         // modules
         placeholderExpansions = new ArrayList<>();
+        registerManagers();
+        AbstractManager.loadManagers();
     }
 
     public static void shutdownPluginCache() {
+        AbstractManager.shutdownManagers();
         if (placeholderExpansions != null && !placeholderExpansions.isEmpty()) placeholderExpansions.clear();
     }
 

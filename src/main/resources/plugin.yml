@@ -1,6 +1,6 @@
 name: VaultedTags
 version: ${project.version}
-main: gg.steve.mc.iiender.vt.VaultedTags
+main: gg.steve.mc.iiender.vt.VaultedTagsPlugin
 api-version: 1.16
 prefix: Tags
 softdepend: [ PlaceholderAPI ]

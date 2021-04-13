@@ -1,0 +1,10 @@
+database:
+  implementation: 'sqlite'
+  host: 'localhost'
+  port: 3306
+  database: 'vaultedtags'
+  username: 'root'
+  password: ''
+
+loaded-groups:
+  - 'global'
