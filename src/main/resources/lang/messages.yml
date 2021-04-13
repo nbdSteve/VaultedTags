@@ -1,0 +1,9 @@
+help:
+  action-bar: false
+  text:
+    - '&5&lVaulted&dTags&7| default help message for VaultedTags version {version}.'
+
+reload:
+  action-bar: true
+  text:
+    - '&5&lVaulted&dTags&7| You have successfully reloaded the plugin, version {version}.'
