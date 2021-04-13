@@ -79,4 +79,8 @@ public class TagDBUtil {
             }
         });
     }
+
+    public static boolean hasTagSelected(UUID playerId) {
+        return !getSelectedTagForPlayer(playerId).equalsIgnoreCase("");
+    }
 }

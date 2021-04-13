@@ -1,6 +1,8 @@
 package gg.steve.mc.iiender.vt.papi;
 
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
+import gg.steve.mc.iiender.vt.tags.Tag;
+import gg.steve.mc.iiender.vt.tags.TagsManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
@@ -33,6 +35,11 @@ public class VaultedTagsExpansion extends PlaceholderExpansion {
 
     @Override
     public String onPlaceholderRequest(Player player, String identifier) {
+        if (identifier.equalsIgnoreCase("selected_tag")) {
+            Tag tag = TagsManager.getInstance().getTagForPlayer(player);
+            if (tag == null) return "";
+            return tag.getTag();
+        }
         return "";
     }
 }

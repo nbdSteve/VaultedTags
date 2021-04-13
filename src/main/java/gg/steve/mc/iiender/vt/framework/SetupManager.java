@@ -1,10 +1,12 @@
 package gg.steve.mc.iiender.vt.framework;
 
+import gg.steve.mc.iiender.vt.cmd.TestCmd;
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.FileManagerUtil;
 import gg.steve.mc.iiender.vt.papi.VaultedTagsExpansion;
+import gg.steve.mc.iiender.vt.tags.TagsManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -38,6 +40,7 @@ public class SetupManager {
     }
 
     public static void registerCommands(JavaPlugin instance) {
+        instance.getCommand("vaultedtags").setExecutor(new TestCmd());
     }
 
     /**
@@ -55,6 +58,7 @@ public class SetupManager {
 
     public static void registerManagers() {
         new DatabaseManager();
+        new TagsManager();
     }
 
     public static void registerPlaceholderExpansions(JavaPlugin instance) {
