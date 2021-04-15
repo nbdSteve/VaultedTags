@@ -1,0 +1,121 @@
+parent-gui: 'menu'
+type: 'none'
+size: 36
+name: '&a&lGlobal Tags'
+fillers:
+  1:
+    slots:
+      - 27
+      - 28
+      - 29
+    material: 'stained_glass_pane'
+    data: 7
+    name: ' '
+    lore:
+    enchantments:
+    item-flags:
+      - 'hide_attributes'
+  2:
+    slots:
+      - 33
+      - 34
+    material: 'stained_glass_pane'
+    data: 15
+    name: ' '
+    lore:
+    enchantments:
+    item-flags:
+      - 'hide_attributes'
+1:
+  slots:
+    - 1
+  action: 'apply_tag:developer'
+  not-available:
+    material: 'stained_glass_pane'
+    data: 15
+    name: '&5&lDeveloper'
+    lore:
+      - ''
+      - '&7Purchase this tag at store.com'
+      - ''
+    enchantments:
+    item-flags:
+    unbreakable: false
+  available:
+    material: 'stained_glass_pane'
+    data: 3
+    name: '&5&lDeveloper'
+    lore:
+      - ''
+      - '&7Click to apply this tag.'
+      - ''
+    enchantments:
+    item-flags:
+    unbreakable: false
+  selected:
+    material: 'stained_glass_pane'
+    data: 5
+    name: '&5&lDeveloper'
+    lore:
+      - ''
+      - '&7Selected'
+      - ''
+    enchantments:
+    item-flags:
+    unbreakable: false
+2:
+  slots:
+    - 30
+  action: 'page:previous'
+  material: 'arrow'
+  data: 0
+  name: '&7Previous page'
+  lore:
+    - ''
+    - '&7Click to return to the previous page'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
+3:
+  slots:
+    - 31
+  action: 'clear_tag'
+  material: 'barrier'
+  data: 0
+  name: '&7Clear tag'
+  lore:
+    - ''
+    - '&7Clear your current tag'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
+4:
+  slots:
+    - 32
+  action: 'page:next'
+  material: 'arrow'
+  data: 0
+  name: '&7Next page'
+  lore:
+    - ''
+    - '&7Click to view the next page'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
+5:
+  slots:
+    - 35
+  action: 'back'
+  material: 'string'
+  data: 0
+  name: '&7Main menu'
+  lore:
+    - ''
+    - '&7Click to view the main menu'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
