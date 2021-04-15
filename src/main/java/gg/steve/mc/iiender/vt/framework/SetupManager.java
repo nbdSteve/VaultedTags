@@ -1,9 +1,12 @@
 package gg.steve.mc.iiender.vt.framework;
 
+import gg.steve.mc.iiender.vt.cmd.TestCmd;
+import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.FileManagerUtil;
 import gg.steve.mc.iiender.vt.papi.VaultedTagsExpansion;
+import gg.steve.mc.iiender.vt.tags.TagsManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
@@ -37,6 +40,7 @@ public class SetupManager {
     }
 
     public static void registerCommands(JavaPlugin instance) {
+        instance.getCommand("vaultedtags").setExecutor(new TestCmd());
     }
 
     /**
@@ -50,6 +54,11 @@ public class SetupManager {
 
     public static void registerEvent(JavaPlugin instance, Listener listener) {
         instance.getServer().getPluginManager().registerEvents(listener, instance);
+    }
+
+    public static void registerManagers() {
+        new DatabaseManager();
+        new TagsManager();
     }
 
     public static void registerPlaceholderExpansions(JavaPlugin instance) {
@@ -69,9 +78,12 @@ public class SetupManager {
     public static void loadPluginCache() {
         // modules
         placeholderExpansions = new ArrayList<>();
+        registerManagers();
+        AbstractManager.loadManagers();
     }
 
     public static void shutdownPluginCache() {
+        AbstractManager.shutdownManagers();
         if (placeholderExpansions != null && !placeholderExpansions.isEmpty()) placeholderExpansions.clear();
     }
 

@@ -1,0 +1,7 @@
+developer:
+  permission-node: 'vt.tag.developer'
+  tag: '&7[&5&lDEVELOPER&7]'
+
+zoolander:
+  permission-node: 'vt.tag.zoolander'
+  tag: '&7[&a&lZOOLANDER&7]'
