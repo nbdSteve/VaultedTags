@@ -1,7 +1,75 @@
 developer:
   permission-node: 'vt.tag.developer'
   tag: '&7[&5&lDEVELOPER&7]'
+  gui:
+    not-available:
+      material: 'stained_glass_pane'
+      data: 15
+      name: '&5&lDeveloper'
+      lore:
+        - ''
+        - '&7Purchase this tag at store.com'
+        - ''
+      enchantments:
+      item-flags:
+      unbreakable: false
+    available:
+      material: 'stained_glass_pane'
+      data: 3
+      name: '&5&lDeveloper'
+      lore:
+        - ''
+        - '&7Click to apply this tag.'
+        - ''
+      enchantments:
+      item-flags:
+      unbreakable: false
+    selected:
+      material: 'stained_glass_pane'
+      data: 5
+      name: '&5&lDeveloper'
+      lore:
+        - ''
+        - '&7Selected'
+        - ''
+      enchantments:
+      item-flags:
+      unbreakable: false
 
 zoolander:
   permission-node: 'vt.tag.zoolander'
   tag: '&7[&a&lZOOLANDER&7]'
+  gui:
+    not-available:
+      material: 'stained_glass_pane'
+      data: 15
+      name: '&5&lDeveloper'
+      lore:
+        - ''
+        - '&7Purchase this tag at store.com'
+        - ''
+      enchantments:
+      item-flags:
+      unbreakable: false
+    available:
+      material: 'stained_glass_pane'
+      data: 3
+      name: '&5&lDeveloper'
+      lore:
+        - ''
+        - '&7Click to apply this tag.'
+        - ''
+      enchantments:
+      item-flags:
+      unbreakable: false
+    selected:
+      material: 'stained_glass_pane'
+      data: 5
+      name: '&5&lDeveloper'
+      lore:
+        - ''
+        - '&7Selected'
+        - ''
+      enchantments:
+      item-flags:
+      unbreakable: false

@@ -1,0 +1,116 @@
+parent-gui: 'menu'
+is-tag-gui: true
+type: 'none'
+size: 36
+name: '&a&lGlobal Tags'
+pages: 2
+fillers:
+  1:
+    slots:
+      - 27
+      - 28
+      - 29
+    material: 'stained_glass_pane'
+    data: 7
+    name: ' '
+    lore:
+    enchantments:
+    item-flags:
+      - 'hide_attributes'
+  2:
+    slots:
+      - 33
+      - 34
+    material: 'stained_glass_pane'
+    data: 15
+    name: ' '
+    lore:
+    enchantments:
+    item-flags:
+      - 'hide_attributes'
+tags:
+  category: 'global'
+  slots:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+    - 16
+    - 17
+    - 18
+    - 19
+    - 20
+    - 21
+    - 22
+    - 23
+    - 24
+    - 25
+    - 26
+1:
+  slots:
+    - 30
+  action: 'page:previous'
+  material: 'arrow'
+  data: 0
+  name: '&7Previous page'
+  lore:
+    - ''
+    - '&7Click to return to the previous page'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
+2:
+  slots:
+    - 31
+  action: 'clear_tag'
+  material: 'barrier'
+  data: 0
+  name: '&7Clear tag'
+  lore:
+    - ''
+    - '&7Clear your current tag'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
+3:
+  slots:
+    - 32
+  action: 'page:next'
+  material: 'arrow'
+  data: 0
+  name: '&7Next page'
+  lore:
+    - ''
+    - '&7Click to view the next page'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false
+4:
+  slots:
+    - 35
+  action: 'back'
+  material: 'string'
+  data: 0
+  name: '&7Main menu'
+  lore:
+    - ''
+    - '&7Click to view the main menu'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false

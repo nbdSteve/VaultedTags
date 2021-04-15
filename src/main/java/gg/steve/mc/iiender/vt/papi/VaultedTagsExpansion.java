@@ -25,7 +25,7 @@ public class VaultedTagsExpansion extends PlaceholderExpansion {
 
     @Override
     public String getIdentifier() {
-        return "sf";
+        return "vt";
     }
 
     @Override
@@ -37,7 +37,7 @@ public class VaultedTagsExpansion extends PlaceholderExpansion {
     public String onPlaceholderRequest(Player player, String identifier) {
         if (identifier.equalsIgnoreCase("selected_tag")) {
             Tag tag = TagsManager.getInstance().getTagForPlayer(player);
-            if (tag == null) return "";
+            if (tag == null) return "No Tag Selected";
             return tag.getTag();
         }
         return "";

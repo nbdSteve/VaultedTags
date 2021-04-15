@@ -86,18 +86,29 @@ public class DatabaseManager extends AbstractManager {
     }
 
     public static void setSelectedTagForPlayer(UUID playerId, String tagId) {
-        if (!getSelectedTagForPlayer(playerId).equalsIgnoreCase("")) deleteSelectedTagForPlayer(playerId);
+//        if (!getSelectedTagForPlayer(playerId).equalsIgnoreCase("")) deleteSelectedTagForPlayer(playerId);
         Connection connection = DatabaseManager.getDbInjector().getConnection();
         Bukkit.getScheduler().runTaskAsynchronously(VaultedTagsPlugin.getInstance(), () -> {
-            try {
-                PreparedStatement set =
-                        connection.prepareStatement("INSERT INTO player_tags (player_id, selected_tag_id) VALUES (?, ?);");
-                set.setString(1, String.valueOf(playerId));
-                set.setString(2, tagId);
-                set.executeUpdate();
-                set.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (!getSelectedTagForPlayer(playerId).equalsIgnoreCase("")) {
+                try {
+                    PreparedStatement set =
+                            connection.prepareStatement("UPDATE player_tags SET selected_tag_id='" + tagId + "' WHERE player_id='" + String.valueOf(playerId) + "'");
+                    set.executeUpdate();
+                    set.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    PreparedStatement set =
+                            connection.prepareStatement("INSERT INTO player_tags (player_id, selected_tag_id) VALUES (?, ?);");
+                    set.setString(1, String.valueOf(playerId));
+                    set.setString(2, tagId);
+                    set.executeUpdate();
+                    set.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

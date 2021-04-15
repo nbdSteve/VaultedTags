@@ -1,0 +1,43 @@
+parent-gui: 'none'
+is-tag-gui: false
+type: 'hopper'
+size: 5
+name: '&5&lTags'
+pages: 1
+fillers:
+  1:
+    slots:
+      - 1
+    material: 'stained_glass_pane'
+    data: 7
+    name: ' '
+    lore:
+    enchantments:
+    item-flags:
+      - 'hide_attributes'
+  2:
+    slots:
+      - 3
+    material: 'stained_glass_pane'
+    data: 15
+    name: ' '
+    lore:
+    enchantments:
+    item-flags:
+      - 'hide_attributes'
+1:
+  slots:
+    - 0
+  action: 'open:global'
+  material: 'hdb-1937'
+  data: 0
+  name: '&a&lGlobal Tags'
+  lore:
+    - ''
+    - '&7Click this to open the'
+    - ' &f-> &aGlobal Tags &f<-'
+    - '&7Selection menu'
+    - ''
+  enchantments:
+  item-flags:
+  unbreakable: false

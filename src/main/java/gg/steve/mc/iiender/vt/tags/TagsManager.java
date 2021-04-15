@@ -23,6 +23,7 @@ public class TagsManager extends AbstractManager {
 
     public TagsManager() {
         instance = this;
+
         this.categories = new ArrayList<>();
         this.playerTags = new HashMap<>();
     }
@@ -34,7 +35,7 @@ public class TagsManager extends AbstractManager {
             dataFolder.mkdirs();
         }
         for (File guiFile : dataFolder.listFiles()) {
-            YamlConfiguration config = new YamlFileUtil().load(guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
+            YamlConfiguration config = new YamlFileUtil().load("categories" + File.separator + guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
             String id = guiFile.getName().split(".yml")[0];
             this.categories.add(new Category(id, config));
         }
@@ -51,10 +52,10 @@ public class TagsManager extends AbstractManager {
 
     @Override
     public void onShutdown() {
-        if (this.playerTags != null && !this.playerTags.isEmpty()) {
+        if (!this.playerTags.isEmpty()) {
             this.playerTags.clear();
         }
-        if (this.categories != null && !this.categories.isEmpty()) this.categories.clear();
+        if (!this.categories.isEmpty()) this.categories.clear();
     }
 
     public static TagsManager getInstance() {
@@ -89,6 +90,14 @@ public class TagsManager extends AbstractManager {
     public boolean hasTagSelected(Player player) {
         if (this.playerTags == null || this.playerTags.isEmpty()) return false;
         return this.playerTags.containsKey(player.getUniqueId()) || DatabaseManager.hasTagSelected(player.getUniqueId());
+    }
+
+    public boolean addTagPlayer(Player player) {
+        return this.playerTags.put(player.getUniqueId(), getTagById(DatabaseManager.getSelectedTagForPlayer(player.getUniqueId()))) != null;
+    }
+
+    public boolean removeTagPlayer(Player player) {
+        return this.playerTags.remove(player.getUniqueId()) != null;
     }
 
     public boolean setTag(Player player, String tagId) {
