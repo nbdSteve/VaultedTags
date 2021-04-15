@@ -1,11 +1,12 @@
 package gg.steve.mc.iiender.vt.tags;
 
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
-import gg.steve.mc.iiender.vt.db.TagDBUtil;
+import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
-import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -13,24 +14,37 @@ import org.bukkit.entity.Player;
 import java.io.File;
 import java.util.*;
 
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class TagsManager extends AbstractManager {
     private static TagsManager instance;
-    private List<Category> categories;
-    private Map<UUID, Tag> playerTags;
+    private final List<Category> categories;
+    private final Map<UUID, Tag> playerTags;
+
+    public TagsManager() {
+        instance = this;
+        this.categories = new ArrayList<>();
+        this.playerTags = new HashMap<>();
+    }
 
     @Override
     public void onLoad() {
-        instance = this;
-        this.categories = new ArrayList<>();
-        for (String entry : Files.CONFIG.get().getStringList("categories")) {
-            YamlConfiguration config = new YamlFileUtil().load("categories" + File.separator + entry + ".yml", VaultedTagsPlugin.getInstance()).get();
-            this.categories.add(new Category(entry, config));
+        File dataFolder = new File(VaultedTagsPlugin.getInstance().getDataFolder(), "categories");
+        if (!dataFolder.exists()) {
+            dataFolder.mkdirs();
         }
-        LogUtil.info("Loaded " + this.categories.size() + " categorys");
-        this.playerTags = new HashMap<>();
+        for (File guiFile : dataFolder.listFiles()) {
+            YamlConfiguration config = new YamlFileUtil().load(guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
+            String id = guiFile.getName().split(".yml")[0];
+            this.categories.add(new Category(id, config));
+        }
+//        for (String entry : Files.CONFIG.get().getStringList("categories")) {
+//            YamlConfiguration config = new YamlFileUtil().load("categories" + File.separator + entry + ".yml", VaultedTagsPlugin.getInstance()).get();
+//            this.categories.add(new Category(entry, config));
+//        }
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (TagDBUtil.hasTagSelected(player.getUniqueId())) {
-                this.playerTags.put(player.getUniqueId(), getTagById(TagDBUtil.getSelectedTagForPlayer(player.getUniqueId())));
+            if (DatabaseManager.hasTagSelected(player.getUniqueId())) {
+                this.playerTags.put(player.getUniqueId(), getTagById(DatabaseManager.getSelectedTagForPlayer(player.getUniqueId())));
             }
         }
     }
@@ -38,9 +52,6 @@ public class TagsManager extends AbstractManager {
     @Override
     public void onShutdown() {
         if (this.playerTags != null && !this.playerTags.isEmpty()) {
-//            for (UUID playerId : this.playerTags.keySet()) {
-//                TagDBUtil.setSelectedTagForPlayer(playerId, playerTags.get(playerId).getId());
-//            }
             this.playerTags.clear();
         }
         if (this.categories != null && !this.categories.isEmpty()) this.categories.clear();
@@ -77,18 +88,18 @@ public class TagsManager extends AbstractManager {
 
     public boolean hasTagSelected(Player player) {
         if (this.playerTags == null || this.playerTags.isEmpty()) return false;
-        return this.playerTags.containsKey(player.getUniqueId()) || TagDBUtil.hasTagSelected(player.getUniqueId());
+        return this.playerTags.containsKey(player.getUniqueId()) || DatabaseManager.hasTagSelected(player.getUniqueId());
     }
 
     public boolean setTag(Player player, String tagId) {
         if (this.hasTagSelected(player)) this.clearTag(player);
-        TagDBUtil.setSelectedTagForPlayer(player.getUniqueId(), tagId);
+        DatabaseManager.setSelectedTagForPlayer(player.getUniqueId(), tagId);
         return this.playerTags.put(player.getUniqueId(), this.getTagById(tagId)) != null;
     }
 
     public boolean clearTag(Player player) {
-        if (TagDBUtil.hasTagSelected(player.getUniqueId())) {
-            TagDBUtil.deleteSelectedTagForPlayer(player.getUniqueId());
+        if (DatabaseManager.hasTagSelected(player.getUniqueId())) {
+            DatabaseManager.deleteSelectedTagForPlayer(player.getUniqueId());
         }
         return this.playerTags.remove(player.getUniqueId()) != null;
     }
