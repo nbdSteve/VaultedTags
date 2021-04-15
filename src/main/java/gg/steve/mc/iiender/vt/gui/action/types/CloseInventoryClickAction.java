@@ -1,5 +1,6 @@
 package gg.steve.mc.iiender.vt.gui.action.types;
 
+import gg.steve.mc.iiender.vt.gui.AbstractGui;
 import gg.steve.mc.iiender.vt.gui.action.AbstractInventoryClickAction;
 import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
 import org.bukkit.configuration.ConfigurationSection;
@@ -12,7 +13,7 @@ public class CloseInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
         player.closeInventory();
     }
 }

@@ -23,7 +23,7 @@ public abstract class AbstractInventoryClickAction {
         return GuiItemCreationUtil.createItem(section);
     }
 
-    public abstract void onClick(Player player, ConfigurationSection section);
+    public abstract void onClick(AbstractGui gui, Player player, ConfigurationSection section);
 
     public boolean isIdMatch(String query) {
         return this.id.equalsIgnoreCase(query);

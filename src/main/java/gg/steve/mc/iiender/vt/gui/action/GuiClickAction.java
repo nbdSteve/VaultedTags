@@ -8,11 +8,11 @@ public enum GuiClickAction {
     CLOSE(new CloseInventoryClickAction()),
     CLEAR_TAG(new ClearTagInventoryClickAction()),
     APPLY_TAG(new ApplyTagInventoryClickAction()),
-    PAGE,
-    BACK,
+    PAGE(new PageInventoryClickAction()),
+    BACK(new BackInventoryClickAction()),
     PERMISSION(new PermissionInventoryClickAction());
 
-    private AbstractInventoryClickAction action;
+    private final AbstractInventoryClickAction action;
 
     GuiClickAction(AbstractInventoryClickAction action) {
         this.action = action;

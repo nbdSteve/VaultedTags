@@ -7,19 +7,16 @@ import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
-public class OpenInventoryClickAction extends AbstractInventoryClickAction {
+public class BackInventoryClickAction extends AbstractInventoryClickAction {
 
-    public OpenInventoryClickAction() {
-        super(GuiClickAction.OPEN, "open", 2);
+    public BackInventoryClickAction() {
+        super(GuiClickAction.BACK, "back", 1);
     }
 
     @Override
     public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
+        if (!gui.isHasParentGui()) return;
         gui.close(player);
-        GuiManager.getInstance().openGui(player, getGuiId(section.getString("action")));
-    }
-
-    public String getGuiId(String actionFromConfig) {
-        return actionFromConfig.split(":")[1];
+        GuiManager.getInstance().openGui(player, gui.getParentGuiId());
     }
 }

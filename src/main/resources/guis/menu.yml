@@ -1,7 +1,9 @@
 parent-gui: 'none'
+is-tag-gui: false
 type: 'hopper'
 size: 5
 name: '&5&lTags'
+pages: 1
 fillers:
   1:
     slots:
@@ -25,7 +27,7 @@ fillers:
       - 'hide_attributes'
 1:
   slots:
-    - 1
+    - 0
   action: 'open:global'
   material: 'hdb-1937'
   data: 0

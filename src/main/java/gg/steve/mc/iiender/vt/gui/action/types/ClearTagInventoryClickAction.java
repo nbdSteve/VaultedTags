@@ -1,5 +1,6 @@
 package gg.steve.mc.iiender.vt.gui.action.types;
 
+import gg.steve.mc.iiender.vt.gui.AbstractGui;
 import gg.steve.mc.iiender.vt.gui.action.AbstractInventoryClickAction;
 import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
 import gg.steve.mc.iiender.vt.tags.TagsManager;
@@ -14,9 +15,10 @@ public class ClearTagInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
         if (TagsManager.getInstance().hasTagSelected(player)) {
             TagsManager.getInstance().clearTag(player);
+            gui.refresh();
         } else {
             player.closeInventory();
             player.sendMessage(ChatColor.RED + "You do not have a tag selected.");

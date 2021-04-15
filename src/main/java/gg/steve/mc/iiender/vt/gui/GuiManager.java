@@ -4,6 +4,8 @@ import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
 import gg.steve.mc.iiender.vt.gui.implementations.GenericGui;
+import gg.steve.mc.iiender.vt.gui.implementations.TagPageGui;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 
@@ -28,15 +30,22 @@ public class GuiManager extends AbstractManager {
             dataFolder.mkdirs();
         }
         for (File guiFile : dataFolder.listFiles()) {
-            YamlConfiguration config = new YamlFileUtil().load(guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
+            YamlConfiguration config = new YamlFileUtil().load("guis" + File.separator + guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
             String id = guiFile.getName().split(".yml")[0];
-            this.guis.put(id, new GenericGui(id, config, VaultedTagsPlugin.getInstance()));
+            if (config.getBoolean("is-tag-gui")) {
+                this.guis.put(id, new TagPageGui(id, config, VaultedTagsPlugin.getInstance()));
+            } else this.guis.put(id, new GenericGui(id, config, VaultedTagsPlugin.getInstance()));
         }
     }
 
     @Override
     public void onShutdown() {
-        if (this.guis != null && !this.guis.isEmpty()) this.guis.clear();
+        if (this.guis != null && !this.guis.isEmpty()) {
+            this.guis.forEach((s, gui) -> {
+                gui.onShutdown();
+            });
+            this.guis.clear();
+        }
         if (this.playerGuis != null && !this.playerGuis.isEmpty()) this.playerGuis.clear();
     }
 
