@@ -6,3 +6,11 @@ prefix: Tags
 softdepend: [ PlaceholderAPI ]
 authors: [ stevegoodhill ]
 description: A comphrensive tags plugin that utilises MySQL to store player preferences across multiple plugin instances. Developed for iiEnder by Steve Goodhill.
+commands:
+  vaultedtags:
+    usage: /<command>
+    description: Use this command to open up the tags gui, select a tag by clicking the glass pane.
+    aliases:
+      - vt
+      - tag
+      - tags

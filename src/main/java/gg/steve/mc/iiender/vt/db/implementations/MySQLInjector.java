@@ -2,10 +2,11 @@ package gg.steve.mc.iiender.vt.db.implementations;
 
 import gg.steve.mc.iiender.vt.db.DatabaseImplementation;
 import gg.steve.mc.iiender.vt.db.DatabaseInjector;
-import gg.steve.mc.iiender.vt.db.TagDBUtil;
+import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class MySQLInjector extends DatabaseInjector {
 
@@ -17,7 +18,7 @@ public class MySQLInjector extends DatabaseInjector {
     public void connect() {
         try {
             this.setConnection(DriverManager.getConnection("jdbc:mysql://" + this.getHost() + ":" + this.getPort() + "/" + this.getDatabase() + "?autoReconnect=true&useSSL=" + this.isSsl(), this.getUser(), this.getPassword()));
-            TagDBUtil.generateTables();
+            DatabaseManager.generateTables();
         } catch (Exception e) {
             e.printStackTrace();
             LogUtil.info("There was an error connecting to the VaultedTags SQL database: " + e.getMessage());

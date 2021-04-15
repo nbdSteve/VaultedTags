@@ -3,7 +3,7 @@ package gg.steve.mc.iiender.vt.db.implementations;
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.db.DatabaseImplementation;
 import gg.steve.mc.iiender.vt.db.DatabaseInjector;
-import gg.steve.mc.iiender.vt.db.TagDBUtil;
+import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 
 import java.io.File;
@@ -34,7 +34,7 @@ public class SQLiteInjector extends DatabaseInjector {
             }
             Class.forName("org.sqlite.JDBC");
             this.setConnection(DriverManager.getConnection("jdbc:sqlite:" + folder));
-            TagDBUtil.generateTables();
+            DatabaseManager.generateTables();
         } catch (Exception e) {
             e.printStackTrace();
             LogUtil.info("There was an error connecting to the VaultedTags SQLite database: " + e.getMessage());

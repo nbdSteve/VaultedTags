@@ -5,6 +5,6 @@ database:
   database: 'vaultedtags'
   username: 'root'
   password: ''
-
-loaded-groups:
-  - 'global'
+#
+#categories:
+#  - 'global'
