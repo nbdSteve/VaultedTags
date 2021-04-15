@@ -5,7 +5,9 @@ import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.FileManagerUtil;
+import gg.steve.mc.iiender.vt.gui.GuiManager;
 import gg.steve.mc.iiender.vt.papi.VaultedTagsExpansion;
+import gg.steve.mc.iiender.vt.tags.ConnectionListener;
 import gg.steve.mc.iiender.vt.tags.TagsManager;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
@@ -13,7 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.text.Format;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,7 @@ public class SetupManager {
      */
     public static void registerEvents(JavaPlugin instance) {
         PluginManager pm = instance.getServer().getPluginManager();
+        pm.registerEvents(new ConnectionListener(), instance);
     }
 
     public static void registerEvent(JavaPlugin instance, Listener listener) {
@@ -59,6 +61,7 @@ public class SetupManager {
     public static void registerManagers() {
         new DatabaseManager();
         new TagsManager();
+        new GuiManager();
     }
 
     public static void registerPlaceholderExpansions(JavaPlugin instance) {
