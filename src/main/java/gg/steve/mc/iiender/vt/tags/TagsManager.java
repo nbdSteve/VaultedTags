@@ -3,6 +3,8 @@ package gg.steve.mc.iiender.vt.tags;
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
+import gg.steve.mc.iiender.vt.framework.message.GeneralMessage;
+import gg.steve.mc.iiender.vt.framework.utils.SoundUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
 import lombok.Data;
@@ -34,7 +36,7 @@ public class TagsManager extends AbstractManager {
             dataFolder.mkdirs();
         }
         for (File guiFile : dataFolder.listFiles()) {
-            YamlConfiguration config = new YamlFileUtil().load(guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
+            YamlConfiguration config = new YamlFileUtil().load("categories" + File.separator + guiFile.getName(), VaultedTagsPlugin.getInstance()).get();
             String id = guiFile.getName().split(".yml")[0];
             this.categories.add(new Category(id, config));
         }
@@ -51,10 +53,10 @@ public class TagsManager extends AbstractManager {
 
     @Override
     public void onShutdown() {
-        if (this.playerTags != null && !this.playerTags.isEmpty()) {
+        if (!this.playerTags.isEmpty()) {
             this.playerTags.clear();
         }
-        if (this.categories != null && !this.categories.isEmpty()) this.categories.clear();
+        if (!this.categories.isEmpty()) this.categories.clear();
     }
 
     public static TagsManager getInstance() {
@@ -82,18 +84,33 @@ public class TagsManager extends AbstractManager {
         return this.playerTags.get(player.getUniqueId());
     }
 
+    public String getActiveTagForPlayer(Player player) {
+        if (!this.hasTagSelected(player)) return Files.CONFIG.get().getString("no-tag-selected-placeholder");
+        return getTagForPlayer(player).getTag();
+    }
+
     public boolean canUseTag(Player player, String tagId) {
         return player.hasPermission(getTagById(tagId).getPermission());
     }
 
     public boolean hasTagSelected(Player player) {
-        if (this.playerTags == null || this.playerTags.isEmpty()) return false;
+        if (this.playerTags.isEmpty()) return false;
         return this.playerTags.containsKey(player.getUniqueId()) || DatabaseManager.hasTagSelected(player.getUniqueId());
+    }
+
+    public boolean addTagPlayer(Player player) {
+        return this.playerTags.put(player.getUniqueId(), getTagById(DatabaseManager.getSelectedTagForPlayer(player.getUniqueId()))) != null;
+    }
+
+    public boolean removeTagPlayer(Player player) {
+        return this.playerTags.remove(player.getUniqueId()) != null;
     }
 
     public boolean setTag(Player player, String tagId) {
         if (this.hasTagSelected(player)) this.clearTag(player);
         DatabaseManager.setSelectedTagForPlayer(player.getUniqueId(), tagId);
+        GeneralMessage.APPLY_TAG.message(player, getTagById(tagId).getTag());
+        SoundUtil.playSound(Files.CONFIG.get(), "apply", player);
         return this.playerTags.put(player.getUniqueId(), this.getTagById(tagId)) != null;
     }
 
@@ -101,6 +118,8 @@ public class TagsManager extends AbstractManager {
         if (DatabaseManager.hasTagSelected(player.getUniqueId())) {
             DatabaseManager.deleteSelectedTagForPlayer(player.getUniqueId());
         }
+        SoundUtil.playSound(Files.CONFIG.get(), "clear", player);
+        GeneralMessage.CLEAR_TAG.message(player, getTagForPlayer(player).getTag());
         return this.playerTags.remove(player.getUniqueId()) != null;
     }
 }

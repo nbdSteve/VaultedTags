@@ -1,7 +1,55 @@
-developer:
-  permission-node: 'vt.tag.developer'
-  tag: '&7[&5&lDEVELOPER&7]'
-
-zoolander:
-  permission-node: 'vt.tag.zoolander'
-  tag: '&7[&a&lZOOLANDER&7]'
+star:
+  permission-node: 'vt.tag.star'
+  tag: '&8&l<&e✯&8&l>'
+  gui:
+    not-available:
+      material: 'nether_star'
+      data: 0
+      name: '&4&lTAG: &c&lSTAR'
+      lore:
+        - ''
+        - '&7&o"Tags are unique cosmetic player suffixes'
+        - '&7&othat appear in the main server chat."'
+        - ''
+        - '&4&lINFORMATION:'
+        - ' &4* &cPreview: {format}'
+        - ' &4* &cStatus: &fLocked'
+        - ''
+        - '&7(( Obtain @ &e&nstore.vaulted.cc&r &7))'
+      enchantments:
+      item-flags:
+      unbreakable: false
+    available:
+      material: 'nether_star'
+      data: 0
+      name: '&4&lTAG: &c&lSTAR'
+      lore:
+        - ''
+        - '&7&o"Tags are unique cosmetic player suffixes'
+        - '&7&othat appear in the main server chat."'
+        - ''
+        - '&4&lINFORMATION:'
+        - ' &4* &cPreview: {format}'
+        - ' &4* &cStatus: &fAvailable'
+        - ''
+        - '&7(( Obtain @ &e&nstore.vaulted.cc&r &7))'
+      enchantments:
+      item-flags:
+      unbreakable: false
+    selected:
+      material: 'nether_star'
+      data: 0
+      name: '&4&lTAG: &c&lSTAR'
+      lore:
+        - ''
+        - '&7&o"Tags are unique cosmetic player suffixes'
+        - '&7&othat appear in the main server chat."'
+        - ''
+        - '&4&lINFORMATION:'
+        - ' &4* &cPreview: {format}'
+        - ' &4* &cStatus: &fSelected'
+        - ''
+        - '&7(( Obtain @ &e&nstore.vaulted.cc&r &7))'
+      enchantments:
+      item-flags:
+      unbreakable: false
