@@ -36,10 +36,8 @@ public class VaultedTagsExpansion extends PlaceholderExpansion {
     @Override
     public String onPlaceholderRequest(Player player, String identifier) {
         if (identifier.equalsIgnoreCase("selected_tag")) {
-            Tag tag = TagsManager.getInstance().getTagForPlayer(player);
-            if (tag == null) return "No Tag Selected";
-            return tag.getTag();
+            return TagsManager.getInstance().getActiveTagForPlayer(player);
         }
-        return "";
+        return "Invalid Placeholder";
     }
 }

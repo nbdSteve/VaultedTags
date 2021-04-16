@@ -4,6 +4,7 @@ import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
 import gg.steve.mc.iiender.vt.framework.message.GeneralMessage;
+import gg.steve.mc.iiender.vt.framework.utils.SoundUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
 import lombok.Data;
@@ -24,7 +25,6 @@ public class TagsManager extends AbstractManager {
 
     public TagsManager() {
         instance = this;
-
         this.categories = new ArrayList<>();
         this.playerTags = new HashMap<>();
     }
@@ -84,12 +84,17 @@ public class TagsManager extends AbstractManager {
         return this.playerTags.get(player.getUniqueId());
     }
 
+    public String getActiveTagForPlayer(Player player) {
+        if (!this.hasTagSelected(player)) return Files.CONFIG.get().getString("no-tag-selected-placeholder");
+        return getTagForPlayer(player).getTag();
+    }
+
     public boolean canUseTag(Player player, String tagId) {
         return player.hasPermission(getTagById(tagId).getPermission());
     }
 
     public boolean hasTagSelected(Player player) {
-        if (this.playerTags == null || this.playerTags.isEmpty()) return false;
+        if (this.playerTags.isEmpty()) return false;
         return this.playerTags.containsKey(player.getUniqueId()) || DatabaseManager.hasTagSelected(player.getUniqueId());
     }
 
@@ -105,6 +110,7 @@ public class TagsManager extends AbstractManager {
         if (this.hasTagSelected(player)) this.clearTag(player);
         DatabaseManager.setSelectedTagForPlayer(player.getUniqueId(), tagId);
         GeneralMessage.APPLY_TAG.message(player, getTagById(tagId).getTag());
+        SoundUtil.playSound(Files.CONFIG.get(), "apply", player);
         return this.playerTags.put(player.getUniqueId(), this.getTagById(tagId)) != null;
     }
 
@@ -112,6 +118,7 @@ public class TagsManager extends AbstractManager {
         if (DatabaseManager.hasTagSelected(player.getUniqueId())) {
             DatabaseManager.deleteSelectedTagForPlayer(player.getUniqueId());
         }
+        SoundUtil.playSound(Files.CONFIG.get(), "clear", player);
         GeneralMessage.CLEAR_TAG.message(player, getTagForPlayer(player).getTag());
         return this.playerTags.remove(player.getUniqueId()) != null;
     }

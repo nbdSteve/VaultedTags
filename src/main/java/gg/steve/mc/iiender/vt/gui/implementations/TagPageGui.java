@@ -4,30 +4,33 @@ import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.gui.AbstractGui;
 import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
 import gg.steve.mc.iiender.vt.gui.action.types.ApplyTagInventoryClickAction;
+import gg.steve.mc.iiender.vt.gui.action.types.ClearTagInventoryClickAction;
+import gg.steve.mc.iiender.vt.gui.utils.GuiItemCreationUtil;
 import gg.steve.mc.iiender.vt.tags.Category;
 import gg.steve.mc.iiender.vt.tags.Tag;
 import gg.steve.mc.iiender.vt.tags.TagsManager;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
 
 public class TagPageGui extends AbstractGui {
     private final Map<Integer, Tag> tags;
+    private final ItemStack noPermissionItem;
+    private final long noPermissionItemDisplayLength;
 
     public TagPageGui(String guiId, YamlConfiguration config, JavaPlugin instance) {
         super(guiId, config, instance);
         this.tags = new HashMap<>();
-        Category category = TagsManager.getInstance().getCategoryById(config.getString("tags.category"));
-        int i = 0;
-        for (Tag tag : category.getTags()) {
-            this.tags.put(i, tag);
-            i++;
-        }
+        loadCategoryTags();
+        this.noPermissionItem = GuiItemCreationUtil.createItem(config.getConfigurationSection("no-permission-item"));
+        this.noPermissionItemDisplayLength = config.getLong("no-permission-item.display-length");
     }
 
     @Override
     public void refresh() {
+        loadCategoryTags();
         for (String entry : this.getConfig().getKeys(false)) {
             try {
                 Integer.parseInt(entry);
@@ -49,6 +52,18 @@ public class TagPageGui extends AbstractGui {
         renderTags();
     }
 
+    public void loadCategoryTags() {
+        if (this.tags == null || this.tags.isEmpty()) {
+            Category category = TagsManager.getInstance().getCategoryById(this.getConfig().getString("tags.category"));
+            if (category == null) return;
+            int i = 0;
+            for (Tag tag : category.getTags()) {
+                this.tags.put(i, tag);
+                i++;
+            }
+        }
+    }
+
     public void renderTags() {
         List<Integer> slots = this.getConfig().getIntegerList("tags.slots");
         int startIndex, finishIndex;
@@ -66,7 +81,7 @@ public class TagPageGui extends AbstractGui {
             if (slot >= tagsToRender.size()) return;
             Tag tag = tagsToRender.get(index);
             setItemInSlot(slot, ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).getRenderedItem(this.getOwner(), tag.getCategory().getConfig().getConfigurationSection(tag.getId() + ".gui"), tag), player -> {
-                ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).onClick(this, this.getOwner(), tag);
+                ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).onClick(this, this.getOwner(), tag, slot);
             });
             index++;
         }
@@ -75,5 +90,13 @@ public class TagPageGui extends AbstractGui {
     @Override
     public AbstractGui clone() {
         return new TagPageGui(this.getGuiId(), this.getConfig(), this.getInstance());
+    }
+
+    public ItemStack getNoPermissionItem() {
+        return noPermissionItem;
+    }
+
+    public long getNoPermissionItemDisplayLength() {
+        return noPermissionItemDisplayLength;
     }
 }
