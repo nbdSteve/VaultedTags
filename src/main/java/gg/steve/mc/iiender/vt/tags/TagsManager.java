@@ -3,6 +3,7 @@ package gg.steve.mc.iiender.vt.tags;
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
+import gg.steve.mc.iiender.vt.framework.message.GeneralMessage;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
 import lombok.Data;
@@ -103,6 +104,7 @@ public class TagsManager extends AbstractManager {
     public boolean setTag(Player player, String tagId) {
         if (this.hasTagSelected(player)) this.clearTag(player);
         DatabaseManager.setSelectedTagForPlayer(player.getUniqueId(), tagId);
+        GeneralMessage.APPLY_TAG.message(player, getTagById(tagId).getTag());
         return this.playerTags.put(player.getUniqueId(), this.getTagById(tagId)) != null;
     }
 
@@ -110,6 +112,7 @@ public class TagsManager extends AbstractManager {
         if (DatabaseManager.hasTagSelected(player.getUniqueId())) {
             DatabaseManager.deleteSelectedTagForPlayer(player.getUniqueId());
         }
+        GeneralMessage.CLEAR_TAG.message(player, getTagForPlayer(player).getTag());
         return this.playerTags.remove(player.getUniqueId()) != null;
     }
 }
