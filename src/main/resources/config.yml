@@ -5,6 +5,17 @@ database:
   database: 'vaultedtags'
   username: 'root'
   password: ''
-#
-#categories:
-#  - 'global'
+
+apply:
+  sound:
+    enabled: true
+    type: 'level_up'
+    volume: 1
+    pitch: 2
+
+clear:
+  sound:
+    enabled: true
+    type: 'bat_take_off'
+    volume: 1
+    pitch: 2

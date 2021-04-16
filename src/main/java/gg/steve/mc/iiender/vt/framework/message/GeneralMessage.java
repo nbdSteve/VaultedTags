@@ -13,7 +13,9 @@ import java.util.List;
 
 public enum GeneralMessage {
     RELOAD("reload", "{version}"),
-    HELP("help", "{version}");
+    HELP("help", "{version}"),
+    APPLY_TAG("apply", "{format}"),
+    CLEAR_TAG("clear", "{format}");
 
     private String path;
     private boolean actionBar;

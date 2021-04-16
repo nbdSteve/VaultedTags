@@ -1,75 +1,55 @@
-developer:
-  permission-node: 'vt.tag.developer'
-  tag: '&7[&5&lDEVELOPER&7]'
+star:
+  permission-node: 'vt.tag.star'
+  tag: '&8&l<&e✯&8&l>'
   gui:
     not-available:
-      material: 'stained_glass_pane'
-      data: 15
-      name: '&5&lDeveloper'
+      material: 'nether_star'
+      data: 0
+      name: '&4&lTAG: &c&lSTAR'
       lore:
         - ''
-        - '&7Purchase this tag at store.com'
+        - '&7&o"Tags are unique cosmetic player suffixes'
+        - '&7&othat appear in the main server chat."'
         - ''
+        - '&4&lINFORMATION:'
+        - ' &4* &cPreview: {format}'
+        - ' &4* &cStatus: &fLocked'
+        - ''
+        - '&7(( Obtain @ &e&nstore.vaulted.cc&r &7))'
       enchantments:
       item-flags:
       unbreakable: false
     available:
-      material: 'stained_glass_pane'
-      data: 3
-      name: '&5&lDeveloper'
+      material: 'nether_star'
+      data: 0
+      name: '&4&lTAG: &c&lSTAR'
       lore:
         - ''
-        - '&7Click to apply this tag.'
+        - '&7&o"Tags are unique cosmetic player suffixes'
+        - '&7&othat appear in the main server chat."'
         - ''
+        - '&4&lINFORMATION:'
+        - ' &4* &cPreview: {format}'
+        - ' &4* &cStatus: &fAvailable'
+        - ''
+        - '&7(( Obtain @ &e&nstore.vaulted.cc&r &7))'
       enchantments:
       item-flags:
       unbreakable: false
     selected:
-      material: 'stained_glass_pane'
-      data: 5
-      name: '&5&lDeveloper'
+      material: 'nether_star'
+      data: 0
+      name: '&4&lTAG: &c&lSTAR'
       lore:
         - ''
-        - '&7Selected'
+        - '&7&o"Tags are unique cosmetic player suffixes'
+        - '&7&othat appear in the main server chat."'
         - ''
-      enchantments:
-      item-flags:
-      unbreakable: false
-
-zoolander:
-  permission-node: 'vt.tag.zoolander'
-  tag: '&7[&a&lZOOLANDER&7]'
-  gui:
-    not-available:
-      material: 'stained_glass_pane'
-      data: 15
-      name: '&5&lDeveloper'
-      lore:
+        - '&4&lINFORMATION:'
+        - ' &4* &cPreview: {format}'
+        - ' &4* &cStatus: &fSelected'
         - ''
-        - '&7Purchase this tag at store.com'
-        - ''
-      enchantments:
-      item-flags:
-      unbreakable: false
-    available:
-      material: 'stained_glass_pane'
-      data: 3
-      name: '&5&lDeveloper'
-      lore:
-        - ''
-        - '&7Click to apply this tag.'
-        - ''
-      enchantments:
-      item-flags:
-      unbreakable: false
-    selected:
-      material: 'stained_glass_pane'
-      data: 5
-      name: '&5&lDeveloper'
-      lore:
-        - ''
-        - '&7Selected'
-        - ''
+        - '&7(( Obtain @ &e&nstore.vaulted.cc&r &7))'
       enchantments:
       item-flags:
       unbreakable: false

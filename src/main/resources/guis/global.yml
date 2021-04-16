@@ -58,6 +58,15 @@ tags:
     - 24
     - 25
     - 26
+no-permission-item:
+  material: 'barrier'
+  data: 0
+  name: '&c&lNO PERMISSION'
+  lore:
+    - '&7You do not have permission to use this tag'
+  enchantments:
+  item-flags:
+  unbreakable: false
 1:
   slots:
     - 30
