@@ -59,6 +59,7 @@ tags:
     - 25
     - 26
 no-permission-item:
+  display-length: 60 # time in ticks that this item will be displayed
   material: 'barrier'
   data: 0
   name: '&c&lNO PERMISSION'

@@ -24,7 +24,6 @@ public class TagsManager extends AbstractManager {
 
     public TagsManager() {
         instance = this;
-
         this.categories = new ArrayList<>();
         this.playerTags = new HashMap<>();
     }
