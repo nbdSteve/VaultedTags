@@ -5,6 +5,19 @@ database:
   database: 'vaultedtags'
   username: 'root'
   password: ''
-#
-#categories:
-#  - 'global'
+
+no-tag-selected-placeholder: 'None Selected'
+
+apply:
+  sound:
+    enabled: true
+    type: 'entity_player_levelup'
+    volume: 1
+    pitch: 2
+
+clear:
+  sound:
+    enabled: true
+    type: 'entity_bat_takeoff'
+    volume: 1
+    pitch: 2

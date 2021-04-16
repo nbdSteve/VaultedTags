@@ -1,6 +1,6 @@
 package gg.steve.mc.iiender.vt.framework;
 
-import gg.steve.mc.iiender.vt.cmd.TestCmd;
+import gg.steve.mc.iiender.vt.cmd.TagsCmd;
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
@@ -41,7 +41,7 @@ public class SetupManager {
     }
 
     public static void registerCommands(JavaPlugin instance) {
-        instance.getCommand("vaultedtags").setExecutor(new TestCmd());
+        instance.getCommand("vaultedtags").setExecutor(new TagsCmd());
     }
 
     /**

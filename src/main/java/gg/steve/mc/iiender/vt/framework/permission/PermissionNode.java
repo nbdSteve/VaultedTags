@@ -6,7 +6,8 @@ import org.bukkit.command.CommandSender;
 public enum PermissionNode {
     // cmd
     RELOAD("command.reload"),
-    HELP("command.help");
+    HELP("command.help"),
+    GUI("command.gui");
 
     private String path;
 

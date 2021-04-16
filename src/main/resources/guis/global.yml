@@ -58,6 +58,16 @@ tags:
     - 24
     - 25
     - 26
+no-permission-item:
+  display-length: 60 # time in ticks that this item will be displayed
+  material: 'barrier'
+  data: 0
+  name: '&c&lNO PERMISSION'
+  lore:
+    - '&7You do not have permission to use this tag'
+  enchantments:
+  item-flags:
+  unbreakable: false
 1:
   slots:
     - 30
@@ -81,7 +91,7 @@ tags:
   name: '&7Clear tag'
   lore:
     - ''
-    - '&7Clear your current tag'
+    - '&7Clear your current tag, {format}&r.'
     - ''
   enchantments:
   item-flags:

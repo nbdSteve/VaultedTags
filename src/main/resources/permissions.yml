@@ -1,3 +1,4 @@
 command:
   reload: vt.reload
   help: vt.help
+  gui: vt.gui
