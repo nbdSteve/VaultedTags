@@ -2,7 +2,10 @@ package gg.steve.mc.iiender.vt;
 
 import gg.steve.mc.iiender.vt.framework.SetupManager;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
+import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.FileManagerUtil;
+import gg.steve.mc.iiender.vt.license.AdvancedLicense;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class VaultedTagsPlugin extends JavaPlugin {
@@ -23,6 +26,14 @@ public final class VaultedTagsPlugin extends JavaPlugin {
         SetupManager.loadPluginCache();
         // register placeholder expansion if PAPI is present
         SetupManager.registerPlaceholderExpansions(instance);
+        // setup licensing
+        if (Files.CONFIG.get().getString("license") == null || Files.CONFIG.get().getString("license").equalsIgnoreCase("XXXX-XXXX-XXXX-XXXX")) {
+            this.getServer().getPluginManager().disablePlugin(this);
+            LogUtil.warning("\"license\" option in config is either null or default.");
+            LogUtil.warning("Therefore the plugin will be disabled.");
+        } else if (!new AdvancedLicense(Files.CONFIG.get().getString("license"), "https://vaulted.cc/license/verify.php", this).register()) {
+            return;
+        }
         LogUtil.info("Thanks for using VaultedTags v" + getDescription().getVersion() + ", please contact nbdSteve#0583 on discord if you find any bugs.");
     }
 

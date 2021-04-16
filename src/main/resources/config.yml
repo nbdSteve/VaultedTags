@@ -6,6 +6,8 @@ database:
   username: 'root'
   password: ''
 
+license: 'XXXX-XXXX-XXXX-XXXX'
+
 no-tag-selected-placeholder: 'None Selected'
 
 apply:
