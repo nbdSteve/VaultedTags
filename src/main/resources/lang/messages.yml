@@ -7,3 +7,13 @@ reload:
   action-bar: true
   text:
     - '&5&lVaulted&dTags&7| You have successfully reloaded the plugin, version {version}.'
+
+apply:
+  action-bar: true
+  text:
+    - '&5&lVaulted&dTags&7| You have selected the {format}&r tag.'
+
+clear:
+  action-bar: true
+  text:
+    - '&5&lVaulted&dTags&7| You have cleared your tag, {format}&r.'
