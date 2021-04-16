@@ -27,4 +27,15 @@ public class GuiItemCreationUtil {
         builder.addNBT(section.getBoolean("unbreakable"));
         return builder.getItem();
     }
+
+    public static ItemStack createItem(ConfigurationSection section, String tagString) {
+        ItemBuilderUtil builder = ItemBuilderUtil.getBuilderForMaterial(section.getString("material"), section.getString("data"));
+        builder.addName(section.getString("name"));
+        builder.setLorePlaceholders("{format}");
+        builder.addLore(section.getStringList("lore"), tagString);
+        builder.addEnchantments(section.getStringList("enchantments"));
+        builder.addItemFlags(section.getStringList("item-flags"));
+        builder.addNBT(section.getBoolean("unbreakable"));
+        return builder.getItem();
+    }
 }

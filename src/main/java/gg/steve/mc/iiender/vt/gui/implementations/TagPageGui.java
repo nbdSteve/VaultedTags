@@ -4,6 +4,7 @@ import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.gui.AbstractGui;
 import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
 import gg.steve.mc.iiender.vt.gui.action.types.ApplyTagInventoryClickAction;
+import gg.steve.mc.iiender.vt.gui.action.types.ClearTagInventoryClickAction;
 import gg.steve.mc.iiender.vt.gui.utils.GuiItemCreationUtil;
 import gg.steve.mc.iiender.vt.tags.Category;
 import gg.steve.mc.iiender.vt.tags.Tag;

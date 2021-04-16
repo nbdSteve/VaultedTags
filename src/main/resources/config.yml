@@ -6,16 +6,18 @@ database:
   username: 'root'
   password: ''
 
+no-tag-selected-placeholder: 'None Selected'
+
 apply:
   sound:
     enabled: true
-    type: 'level_up'
+    type: 'entity_player_levelup'
     volume: 1
     pitch: 2
 
 clear:
   sound:
     enabled: true
-    type: 'bat_take_off'
+    type: 'entity_bat_takeoff'
     volume: 1
     pitch: 2

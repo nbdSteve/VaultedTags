@@ -23,7 +23,14 @@ public class SoundUtil {
                         Sound.valueOf(attempt2);
                         sound = attempt2;
                     } catch (Exception e2) {
-                        LogUtil.warning("Multiple attempts to convert the sound type were made but all failed, please check your configuration.");
+                        String attempt3 = "ENTITY_PLAYER_" + sound;
+                        try {
+                            Sound.valueOf(attempt3);
+                            sound = attempt3;
+                        } catch (Exception e3) {
+                            LogUtil.warning("Multiple attempts to convert the sound type were made but all failed, please check your configuration.");
+                            return;
+                        }
                     }
                 }
             }

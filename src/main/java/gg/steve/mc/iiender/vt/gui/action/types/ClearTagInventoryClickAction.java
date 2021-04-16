@@ -5,7 +5,6 @@ import gg.steve.mc.iiender.vt.gui.AbstractGui;
 import gg.steve.mc.iiender.vt.gui.action.AbstractInventoryClickAction;
 import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
 import gg.steve.mc.iiender.vt.gui.utils.GuiItemCreationUtil;
-import gg.steve.mc.iiender.vt.tags.Tag;
 import gg.steve.mc.iiender.vt.tags.TagsManager;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -17,8 +16,9 @@ public class ClearTagInventoryClickAction extends AbstractInventoryClickAction {
         super(GuiClickAction.CLEAR_TAG, "clear_tag", 1);
     }
 
-    public ItemStack getRenderedItem(Player player, ConfigurationSection section, Tag tag) {
-        return GuiItemCreationUtil.createItem(section, tag);
+    @Override
+    public ItemStack getRenderedItem(Player player, ConfigurationSection section) {
+        return GuiItemCreationUtil.createItem(section, TagsManager.getInstance().getActiveTagForPlayer(player));
     }
 
     @Override
