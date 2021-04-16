@@ -3,7 +3,7 @@ version: ${project.version}
 main: gg.steve.mc.iiender.vt.VaultedTagsPlugin
 api-version: 1.16
 prefix: Tags
-softdepend: [ PlaceholderAPI ]
+softdepend: [ PlaceholderAPI, HeadDatabase ]
 authors: [ stevegoodhill ]
 description: A comphrensive tags plugin that utilises MySQL to store player preferences across multiple plugin instances. Developed for iiEnder by Steve Goodhill.
 commands:
