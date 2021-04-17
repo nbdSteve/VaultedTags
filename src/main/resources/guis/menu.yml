@@ -1,13 +1,63 @@
 parent-gui: 'none'
 is-tag-gui: false
-type: 'hopper'
-size: 5
-name: '&5&lTags'
+type: 'chest'
+size: 27
+name: '&8Tags Menu'
 pages: 1
+sounds:
+  open:
+    sound:
+      enabled: true
+      type: 'block_chest_open'
+      volume: 1
+      pitch: 0
+  close:
+    sound:
+      enabled: true
+      type: 'block_anvil_destory'
+      volume: 1
+      pitch: 0
+  next:
+    sound:
+      enabled: true
+      type: 'block_composter_fill_success'
+      volume: 1
+      pitch: 2
+  previous:
+    sound:
+      enabled: true
+      type: 'block_enchantment_table_use'
+      volume: 1
+      pitch: 2
 fillers:
   1:
     slots:
+      - 0
       - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+      - 22
+      - 23
+      - 24
+      - 25
+      - 26
     material: 'stained_glass_pane'
     data: 7
     name: ' '
@@ -15,29 +65,22 @@ fillers:
     enchantments:
     item-flags:
       - 'hide_attributes'
-  2:
-    slots:
-      - 3
-    material: 'stained_glass_pane'
-    data: 15
-    name: ' '
-    lore:
-    enchantments:
-    item-flags:
-      - 'hide_attributes'
 1:
   slots:
-    - 0
+    - 13
   action: 'open:global'
-  material: 'hdb-1937'
+  material: 'compass'
   data: 0
-  name: '&a&lGlobal Tags'
+  name: '&6&lCATEGORY: &e&lSEASONAL'
   lore:
     - ''
-    - '&7Click this to open the'
-    - ' &f-> &aGlobal Tags &f<-'
-    - '&7Selection menu'
+    - ' &7&o"This tag category is for all the month'
+    - ' &7&oand seasonal events that happen in the year."'
     - ''
+    - '&6&lINFORMATION:'
+    - '&6&l* &eAmount: &f10 Tags'
+    - ''
+    - '&7&o(( &f&oClick&7&o to view the &6&oSeasonal Tags&7&o. ))'
   enchantments:
   item-flags:
   unbreakable: false

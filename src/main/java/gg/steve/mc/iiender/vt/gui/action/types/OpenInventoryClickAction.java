@@ -14,7 +14,7 @@ public class OpenInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section, int slot) {
         gui.close(player);
         GuiManager.getInstance().openGui(player, getGuiId(section.getString("action")));
     }
