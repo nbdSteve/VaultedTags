@@ -96,7 +96,9 @@ public abstract class AbstractGui implements Listener, Loadable {
     }
 
     public void open() {
-        if (this.owner.isOnline()) this.open(this.owner);
+        if (this.owner.isOnline()) {
+            this.open(this.owner);
+        }
     }
 
     public void open(Player player) {

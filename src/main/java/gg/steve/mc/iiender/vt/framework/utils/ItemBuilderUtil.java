@@ -53,7 +53,7 @@ public class ItemBuilderUtil {
             String[] parts = material.split("-");
             ItemStack item;
             try {
-                item = new ItemStack(Material.valueOf("SKULL_ITEM"));
+                item = new ItemStack(Material.valueOf("PLAYER_HEAD"));
             } catch (Exception e){
                 item = new ItemStack(Material.valueOf("LEGACY_SKULL_ITEM"));
             }
