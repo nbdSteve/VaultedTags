@@ -14,12 +14,11 @@ public enum DebugMessage {
     INVALID_COMMAND("invalid-command"),
     INCORRECT_ARGS("incorrect-args"),
     INSUFFICIENT_PERMISSION("insufficient-permission", "{node}"),
-    TAG_ALREADY_SELECTED("tag-already-selected"),
     NO_TAG_SELECTED("no-tag-selected");
 
-    private String path;
-    private boolean actionBar;
-    private List<String> placeholders;
+    private final String path;
+    private final boolean actionBar;
+    private final List<String> placeholders;
 
     DebugMessage(String path, String... placeholders) {
         this.path = path;

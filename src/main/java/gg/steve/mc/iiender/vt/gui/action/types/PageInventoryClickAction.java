@@ -21,7 +21,7 @@ public class PageInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section, int slot) {
         Direction direction = getDirection(section.getString("action"));
         if (direction == null) return;
         switch (direction) {

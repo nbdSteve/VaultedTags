@@ -14,7 +14,7 @@ public class BackInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section, int slot) {
         if (!gui.isHasParentGui()) return;
         gui.close(player);
         GuiManager.getInstance().openGui(player, gui.getParentGuiId());

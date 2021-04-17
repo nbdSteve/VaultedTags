@@ -3,6 +3,9 @@ package gg.steve.mc.iiender.vt.gui;
 import gg.steve.mc.iiender.vt.framework.Loadable;
 import gg.steve.mc.iiender.vt.framework.utils.ColorUtil;
 import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
+import gg.steve.mc.iiender.vt.framework.utils.SoundUtil;
+import gg.steve.mc.iiender.vt.framework.yml.Files;
+import gg.steve.mc.iiender.vt.gui.implementations.TagPageGui;
 import gg.steve.mc.iiender.vt.gui.utils.GuiItemCreationUtil;
 import lombok.Data;
 import org.bukkit.Bukkit;
@@ -20,6 +23,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
+import java.util.concurrent.ExecutionException;
 
 @Data
 public abstract class AbstractGui implements Listener, Loadable {
@@ -100,6 +104,7 @@ public abstract class AbstractGui implements Listener, Loadable {
         Bukkit.getScheduler().runTaskLater(this.instance, () -> {
             this.viewers.put(player.getUniqueId(), this.id);
             player.openInventory(this.inventory);
+            SoundUtil.playSound(this.config.getConfigurationSection("sounds"), "open", player);
         }, 1l);
     }
 
@@ -110,12 +115,14 @@ public abstract class AbstractGui implements Listener, Loadable {
     public void close(Player player) {
         this.viewers.remove(player.getUniqueId());
         player.closeInventory();
+        SoundUtil.playSound(this.config.getConfigurationSection("sounds"), "close", player);
     }
 
     public boolean nextPage() {
         if (this.page + 1 > this.totalPages) return false;
         this.page++;
         refresh();
+        SoundUtil.playSound(this.config.getConfigurationSection("sounds"), "next", this.owner);
         return true;
     }
 
@@ -123,6 +130,7 @@ public abstract class AbstractGui implements Listener, Loadable {
         if (this.page - 1 < 0) return false;
         this.page--;
         refresh();
+        SoundUtil.playSound(this.config.getConfigurationSection("sounds"), "previous", this.owner);
         return true;
     }
 
@@ -155,7 +163,13 @@ public abstract class AbstractGui implements Listener, Loadable {
     @EventHandler
     public void guiClose(InventoryCloseEvent event) {
         Player player = (Player) event.getPlayer();
-        this.viewers.remove(player.getUniqueId());
+        if (this.viewers.containsKey(player.getUniqueId()) &&
+                this.hasParentGui) {
+            this.close(player);
+            GuiManager.getInstance().openGui(player, this.parentGuiId);
+        } else {
+            this.viewers.remove(player.getUniqueId());
+        }
     }
 
     @EventHandler

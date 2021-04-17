@@ -1,15 +1,45 @@
 parent-gui: 'menu'
 is-tag-gui: true
 type: 'none'
-size: 36
-name: '&a&lGlobal Tags'
+size: 54
+name: '&8&nTags: &7Global'
 pages: 2
+sounds:
+  open:
+    sound:
+      enabled: true
+      type: 'block_chest_open'
+      volume: 1
+      pitch: 0
+  close:
+    sound:
+      enabled: true
+      type: 'block_anvil_destory'
+      volume: 1
+      pitch: 0
+  next:
+    sound:
+      enabled: true
+      type: 'block_composter_fill_success'
+      volume: 1
+      pitch: 2
+  previous:
+    sound:
+      enabled: true
+      type: 'block_enchantment_table_use'
+      volume: 1
+      pitch: 2
 fillers:
   1:
     slots:
-      - 27
-      - 28
-      - 29
+      - 0
+      - 1
+      - 2
+      - 3
+      - 5
+      - 6
+      - 7
+      - 8
     material: 'stained_glass_pane'
     data: 7
     name: ' '
@@ -19,10 +49,14 @@ fillers:
       - 'hide_attributes'
   2:
     slots:
-      - 33
-      - 34
+      - 45
+      - 46
+      - 47
+      - 51
+      - 52
+      - 53
     material: 'stained_glass_pane'
-    data: 15
+    data: 7
     name: ' '
     lore:
     enchantments:
@@ -31,15 +65,6 @@ fillers:
 tags:
   category: 'global'
   slots:
-    - 0
-    - 1
-    - 2
-    - 3
-    - 4
-    - 5
-    - 6
-    - 7
-    - 8
     - 9
     - 10
     - 11
@@ -58,6 +83,24 @@ tags:
     - 24
     - 25
     - 26
+    - 27
+    - 28
+    - 29
+    - 30
+    - 31
+    - 32
+    - 33
+    - 34
+    - 35
+    - 36
+    - 37
+    - 38
+    - 39
+    - 40
+    - 41
+    - 42
+    - 43
+    - 44
 no-permission-item:
   display-length: 60 # time in ticks that this item will be displayed
   material: 'barrier'
@@ -68,59 +111,63 @@ no-permission-item:
   enchantments:
   item-flags:
   unbreakable: false
+no-tag-selected-item:
+  display-length: 60 # time in ticks that this item will be displayed
+  material: 'barrier'
+  data: 0
+  name: '&c&lNO TAG EQUIPPED'
+  lore:
+    - '&7You do not have a tag equipped.'
+  enchantments:
+  item-flags:
+  unbreakable: false
 1:
   slots:
-    - 30
+    - 48
   action: 'page:previous'
   material: 'arrow'
   data: 0
-  name: '&7Previous page'
+  name: '&e&l<- Previous Page'
   lore:
-    - ''
-    - '&7Click to return to the previous page'
-    - ''
+    - '&7View the previous page of tags.'
   enchantments:
   item-flags:
   unbreakable: false
 2:
   slots:
-    - 31
+    - 4
   action: 'clear_tag'
-  material: 'barrier'
+  material: 'anvil'
   data: 0
-  name: '&7Clear tag'
+  name: '&c&l[!] &4Remove Tag'
   lore:
+    - '&7 &4&l* &cCurrent Tag: {format}'
     - ''
-    - '&7Clear your current tag, {format}&7.'
-    - ''
+    - '&7&o(( Click to &f&oremove&7&o your current tag. ))'
   enchantments:
   item-flags:
   unbreakable: false
 3:
   slots:
-    - 32
+    - 50
   action: 'page:next'
   material: 'arrow'
   data: 0
-  name: '&7Next page'
+  name: '&e&lNext Page ->'
   lore:
-    - ''
-    - '&7Click to view the next page'
-    - ''
+    - '&7View next page of tags.'
   enchantments:
   item-flags:
   unbreakable: false
 4:
   slots:
-    - 35
+    - 49
   action: 'back'
-  material: 'string'
+  material: 'wood_door'
   data: 0
-  name: '&7Main menu'
+  name: '&e&lBACK TO MAIN MENU'
   lore:
-    - ''
-    - '&7Click to view the main menu'
-    - ''
+    - '&7Return to the main tags menu.'
   enchantments:
   item-flags:
   unbreakable: false
