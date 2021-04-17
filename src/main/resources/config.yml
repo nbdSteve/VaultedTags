@@ -23,3 +23,10 @@ clear:
     type: 'entity_bat_takeoff'
     volume: 1
     pitch: 2
+
+no-tag-selected:
+  sound:
+    enabled: true
+    type: 'entity_bat_takeoff'
+    volume: 1
+    pitch: 2

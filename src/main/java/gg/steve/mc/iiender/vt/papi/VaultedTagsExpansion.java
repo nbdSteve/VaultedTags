@@ -24,7 +24,7 @@ public class VaultedTagsExpansion extends PlaceholderExpansion {
 
     @Override
     public String getIdentifier() {
-        return "tags";
+        return "vt";
     }
 
     @Override

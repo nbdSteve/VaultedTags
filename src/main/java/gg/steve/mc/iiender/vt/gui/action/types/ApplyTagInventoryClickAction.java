@@ -31,7 +31,7 @@ public class ApplyTagInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section, int slot) {
     }
 
     public void onClick(AbstractGui gui, Player player, Tag tag, int slot) {
