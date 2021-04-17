@@ -20,12 +20,6 @@ public final class VaultedTagsPlugin extends JavaPlugin {
     public void onEnable() {
         // setup plugin
         SetupManager.setupFiles(new FileManagerUtil(instance));
-        SetupManager.registerCommands(instance);
-        SetupManager.registerEvents(instance);
-        // this method loads things like modules, tools, maps and data lists
-        SetupManager.loadPluginCache();
-        // register placeholder expansion if PAPI is present
-        SetupManager.registerPlaceholderExpansions(instance);
         // setup licensing
         if (Files.CONFIG.get().getString("license") == null || Files.CONFIG.get().getString("license").equalsIgnoreCase("XXXX-XXXX-XXXX-XXXX")) {
             this.getServer().getPluginManager().disablePlugin(this);
@@ -34,6 +28,13 @@ public final class VaultedTagsPlugin extends JavaPlugin {
         } else if (!new AdvancedLicense(Files.CONFIG.get().getString("license"), "https://vaulted.cc/license/verify.php", this).register()) {
             return;
         }
+        // other setup
+        SetupManager.registerCommands(instance);
+        SetupManager.registerEvents(instance);
+        // this method loads things like modules, tools, maps and data lists
+        SetupManager.loadPluginCache();
+        // register placeholder expansion if PAPI is present
+        SetupManager.registerPlaceholderExpansions(instance);
         LogUtil.info("Thanks for using VaultedTags v" + getDescription().getVersion() + ", please contact nbdSteve#0583 on discord if you find any bugs.");
     }
 

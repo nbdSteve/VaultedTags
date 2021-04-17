@@ -1,7 +1,8 @@
 package gg.steve.mc.iiender.vt.framework.utils;
 
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 import gg.steve.mc.iiender.vt.framework.nbt.NBTItem;
-import gg.steve.mc.iiender.vt.framework.yml.PluginFile;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -9,7 +10,9 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 /**
@@ -46,6 +49,32 @@ public class ItemBuilderUtil {
                     return new ItemBuilderUtil(new ItemStack(Material.valueOf("LEGACY_SKULL_ITEM")));
                 }
             }
+        } else if (material.startsWith("head")) {
+            String[] parts = material.split("-");
+            ItemStack item;
+            try {
+                item = new ItemStack(Material.valueOf("SKULL_ITEM"));
+            } catch (Exception e){
+                item = new ItemStack(Material.valueOf("LEGACY_SKULL_ITEM"));
+            }
+            SkullMeta meta = (SkullMeta) item.getItemMeta();
+            GameProfile profile = new GameProfile(UUID.randomUUID(), "");
+            profile.getProperties().put("textures", new Property("textures", parts[1]));
+            Field profileField;
+            try {
+                profileField = meta.getClass().getDeclaredField("profile");
+                profileField.setAccessible(true);
+                profileField.set(meta, profile);
+            }
+            catch (Exception e) {
+                LogUtil.info("Error assigning custom texture to skull item.");
+                e.printStackTrace();
+            }
+            if (parts[1].length() <= 16) {
+                meta.setOwner(parts[1]);
+            }
+            item.setItemMeta(meta);
+            return new ItemBuilderUtil(item);
         }
         try {
             return new ItemBuilderUtil(material, data);
