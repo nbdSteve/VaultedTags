@@ -1,6 +1,7 @@
 package gg.steve.mc.iiender.vt.tags;
 
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
+import gg.steve.mc.iiender.vt.gui.GuiManager;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,6 +20,7 @@ public class ConnectionListener implements Listener {
 
     @EventHandler
     public void disconnect(PlayerQuitEvent event) {
+        GuiManager.getInstance().removePlayer(event.getPlayer());
         TagsManager.getInstance().removeTagPlayer(event.getPlayer());
     }
 }

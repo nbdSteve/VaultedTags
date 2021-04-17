@@ -29,6 +29,7 @@ public abstract class AbstractManager implements Loadable {
         for (int i = managers.size() - 1; i >= 0; i--) {
             managers.get(i).onShutdown();
         }
+        managers.clear();
 //        for (AbstractManager manager : managers.re) {
 //            manager.onShutdown();
 //        }

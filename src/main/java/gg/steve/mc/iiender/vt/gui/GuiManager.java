@@ -2,6 +2,7 @@ package gg.steve.mc.iiender.vt.gui;
 
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
+import gg.steve.mc.iiender.vt.framework.utils.LogUtil;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
 import gg.steve.mc.iiender.vt.gui.implementations.GenericGui;
 import gg.steve.mc.iiender.vt.gui.implementations.TagPageGui;
@@ -56,6 +57,10 @@ public class GuiManager extends AbstractManager {
     public boolean guiExists(String guiId) {
         if (guis == null || guis.isEmpty()) return false;
         return guis.containsKey(guiId);
+    }
+
+    public void removePlayer(Player player) {
+        this.playerGuis.remove(player.getUniqueId());
     }
 
     public void openGui(Player player, String guiId) {
