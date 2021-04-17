@@ -31,7 +31,7 @@ public class GenericGui extends AbstractGui {
             }
             for (Integer slot : slots) {
                 setItemInSlot(slot, action.getAction().getRenderedItem(this.getOwner(), this.getConfig().getConfigurationSection(entry)), player -> {
-                    action.getAction().onClick(this, player, this.getConfig().getConfigurationSection(entry));
+                    action.getAction().onClick(this, player, this.getConfig().getConfigurationSection(entry), slot);
                 });
             }
         }

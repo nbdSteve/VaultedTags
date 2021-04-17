@@ -17,15 +17,17 @@ import java.util.*;
 
 public class TagPageGui extends AbstractGui {
     private final Map<Integer, Tag> tags;
-    private final ItemStack noPermissionItem;
-    private final long noPermissionItemDisplayLength;
+    private final ItemStack noPermissionItem, noTagSelectedItem;
+    private final long noPermissionItemDisplayLength, noTagSelectedItemDisplayLength;
 
     public TagPageGui(String guiId, YamlConfiguration config, JavaPlugin instance) {
         super(guiId, config, instance);
         this.tags = new HashMap<>();
         loadCategoryTags();
         this.noPermissionItem = GuiItemCreationUtil.createItem(config.getConfigurationSection("no-permission-item"));
+        this.noTagSelectedItem = GuiItemCreationUtil.createItem(config.getConfigurationSection("no-tag-selected-item"));
         this.noPermissionItemDisplayLength = config.getLong("no-permission-item.display-length");
+        this.noTagSelectedItemDisplayLength = config.getLong("no-tag-selected-item.display-length");
     }
 
     @Override
@@ -45,7 +47,7 @@ public class TagPageGui extends AbstractGui {
             }
             for (Integer slot : slots) {
                 setItemInSlot(slot, action.getAction().getRenderedItem(this.getOwner(), this.getConfig().getConfigurationSection(entry)), player -> {
-                    action.getAction().onClick(this, player, this.getConfig().getConfigurationSection(entry));
+                    action.getAction().onClick(this, player, this.getConfig().getConfigurationSection(entry), slot);
                 });
             }
         }
@@ -78,7 +80,7 @@ public class TagPageGui extends AbstractGui {
         if (tagsToRender.isEmpty()) return;
         int index = 0;
         for (Integer slot : slots) {
-            if (slot >= tagsToRender.size()) return;
+            if (slot - slots.get(0) >= tagsToRender.size()) return;
             Tag tag = tagsToRender.get(index);
             setItemInSlot(slot, ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).getRenderedItem(this.getOwner(), tag.getCategory().getConfig().getConfigurationSection(tag.getId() + ".gui"), tag), player -> {
                 ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).onClick(this, this.getOwner(), tag, slot);
@@ -96,7 +98,15 @@ public class TagPageGui extends AbstractGui {
         return noPermissionItem;
     }
 
+    public ItemStack getNoTagSelectedItem() {
+        return noTagSelectedItem;
+    }
+
     public long getNoPermissionItemDisplayLength() {
         return noPermissionItemDisplayLength;
+    }
+
+    public long getNoTagSelectedItemDisplayLength() {
+        return noTagSelectedItemDisplayLength;
     }
 }

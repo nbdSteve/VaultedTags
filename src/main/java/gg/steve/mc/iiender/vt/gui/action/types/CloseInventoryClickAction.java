@@ -13,7 +13,7 @@ public class CloseInventoryClickAction extends AbstractInventoryClickAction {
     }
 
     @Override
-    public void onClick(AbstractGui gui, Player player, ConfigurationSection section) {
+    public void onClick(AbstractGui gui, Player player, ConfigurationSection section, int slot) {
         player.closeInventory();
     }
 }

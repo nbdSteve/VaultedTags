@@ -13,11 +13,6 @@ invalid-command:
   text:
     - '&5&lVaulted&dTags &4(&c&lERROR&4)&7| The command you entered does not exist, try &e/t+ help &7for command help.'
 
-tag-already-selected:
-  action-bar: false
-  text:
-    - '&5&lVaulted&dTags &4(&c&lERROR&4)&7| You have already selected that tag.'
-
 no-tag-selected:
   action-bar: false
   text:
