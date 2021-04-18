@@ -21,14 +21,14 @@ public final class VaultedTagsPlugin extends JavaPlugin {
         // setup plugin
         SetupManager.setupFiles(new FileManagerUtil(instance));
         // setup licensing
-//        if (Files.CONFIG.get().getString("license") == null || Files.CONFIG.get().getString("license").equalsIgnoreCase("XXXX-XXXX-XXXX-XXXX")) {
-//            this.getServer().getPluginManager().disablePlugin(this);
-//            LogUtil.warning("\"license\" option in config is either null or default.");
-//            LogUtil.warning("Therefore the plugin will be disabled.");
-//            return;
-//        } else if (!new AdvancedLicense(Files.CONFIG.get().getString("license"), "https://vaulted.cc/license/verify.php", this).register()) {
-//            return;
-//        }
+        if (Files.CONFIG.get().getString("license") == null || Files.CONFIG.get().getString("license").equalsIgnoreCase("XXXX-XXXX-XXXX-XXXX")) {
+            this.getServer().getPluginManager().disablePlugin(this);
+            LogUtil.warning("\"license\" option in config is either null or default.");
+            LogUtil.warning("Therefore the plugin will be disabled.");
+            return;
+        } else if (!new AdvancedLicense(Files.CONFIG.get().getString("license"), "https://vaulted.cc/license/verify.php", this).register()) {
+            return;
+        }
         // other setup
         SetupManager.registerCommands(instance);
         SetupManager.registerEvents(instance);

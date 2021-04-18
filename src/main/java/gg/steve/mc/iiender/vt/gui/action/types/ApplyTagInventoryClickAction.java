@@ -1,6 +1,8 @@
 package gg.steve.mc.iiender.vt.gui.action.types;
 
 import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
+import gg.steve.mc.iiender.vt.framework.utils.SoundUtil;
+import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.gui.AbstractGui;
 import gg.steve.mc.iiender.vt.gui.action.AbstractInventoryClickAction;
 import gg.steve.mc.iiender.vt.gui.action.GuiClickAction;
@@ -45,6 +47,7 @@ public class ApplyTagInventoryClickAction extends AbstractInventoryClickAction {
         } else {
             ItemStack item = gui.getInventory().getItem(slot);
             gui.getInventory().setItem(slot, ((TagPageGui) gui).getNoPermissionItem());
+            SoundUtil.playSound(Files.CONFIG.get(), "no-permission", player);
             Bukkit.getScheduler().runTaskLater(VaultedTagsPlugin.getInstance(), () -> {
                 gui.getInventory().setItem(slot, item);
             }, ((TagPageGui) gui).getNoPermissionItemDisplayLength());

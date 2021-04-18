@@ -8,6 +8,23 @@ database:
 
 license: 'XXXX-XXXX-XXXX-XXXX'
 
+placeholders:
+  tag:
+    none: 'None'
+    format: '{format}'
+  tag-chat:
+    none: 'None'
+    format: '{format}'
+  tag-tab:
+    none: 'None'
+    format: '{format}'
+  tag-identifier:
+    none: 'None'
+    format: '{format}'
+  tag-scoreboard:
+    none: 'None'
+    format: '{format}'
+
 no-tag-selected-placeholder: 'None Selected'
 
 apply:
@@ -25,6 +42,13 @@ clear:
     pitch: 2
 
 no-tag-selected:
+  sound:
+    enabled: true
+    type: 'entity_bat_takeoff'
+    volume: 1
+    pitch: 2
+
+no-permission:
   sound:
     enabled: true
     type: 'entity_bat_takeoff'

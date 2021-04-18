@@ -4,6 +4,7 @@ import gg.steve.mc.iiender.vt.VaultedTagsPlugin;
 import gg.steve.mc.iiender.vt.db.DatabaseManager;
 import gg.steve.mc.iiender.vt.framework.AbstractManager;
 import gg.steve.mc.iiender.vt.framework.message.GeneralMessage;
+import gg.steve.mc.iiender.vt.framework.utils.ColorUtil;
 import gg.steve.mc.iiender.vt.framework.utils.SoundUtil;
 import gg.steve.mc.iiender.vt.framework.yml.Files;
 import gg.steve.mc.iiender.vt.framework.yml.utils.YamlFileUtil;
@@ -85,7 +86,7 @@ public class TagsManager extends AbstractManager {
     }
 
     public String getActiveTagForPlayer(Player player) {
-        if (!this.hasTagSelected(player)) return Files.CONFIG.get().getString("no-tag-selected-placeholder");
+        if (!this.hasTagSelected(player)) return ColorUtil.colorize(Files.CONFIG.get().getString("no-tag-selected-placeholder"));
         return getTagForPlayer(player).getTag();
     }
 

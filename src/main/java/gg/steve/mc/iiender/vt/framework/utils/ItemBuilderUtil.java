@@ -54,8 +54,12 @@ public class ItemBuilderUtil {
             ItemStack item;
             try {
                 item = new ItemStack(Material.valueOf("PLAYER_HEAD"));
-            } catch (Exception e){
-                item = new ItemStack(Material.valueOf("LEGACY_SKULL_ITEM"));
+            } catch (Exception e) {
+                try {
+                    item = new ItemStack(Material.valueOf("SKULL_ITEM"), 1, (short) 3);
+                } catch (Exception e1) {
+                    item = new ItemStack(Material.valueOf("LEGACY_SKULL_ITEM"), 1, (short) 3);
+                }
             }
             SkullMeta meta = (SkullMeta) item.getItemMeta();
             GameProfile profile = new GameProfile(UUID.randomUUID(), "");
@@ -65,8 +69,7 @@ public class ItemBuilderUtil {
                 profileField = meta.getClass().getDeclaredField("profile");
                 profileField.setAccessible(true);
                 profileField.set(meta, profile);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 LogUtil.info("Error assigning custom texture to skull item.");
                 e.printStackTrace();
             }
