@@ -9,6 +9,7 @@ import gg.steve.mc.iiender.vt.gui.utils.GuiItemCreationUtil;
 import gg.steve.mc.iiender.vt.tags.Category;
 import gg.steve.mc.iiender.vt.tags.Tag;
 import gg.steve.mc.iiender.vt.tags.TagsManager;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -80,7 +81,12 @@ public class TagPageGui extends AbstractGui {
         if (tagsToRender.isEmpty()) return;
         int index = 0;
         for (Integer slot : slots) {
-            if (slot - slots.get(0) >= tagsToRender.size()) return;
+            if (slot - slots.get(0) >= tagsToRender.size()) {
+                if (getInventory().getItem(slot).getType() != Material.AIR) {
+                    setItemInSlot(slot, new ItemStack(Material.AIR), player -> {});
+                }
+                continue;
+            }
             Tag tag = tagsToRender.get(index);
             setItemInSlot(slot, ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).getRenderedItem(this.getOwner(), tag.getCategory().getConfig().getConfigurationSection(tag.getId() + ".gui"), tag), player -> {
                 ((ApplyTagInventoryClickAction) GuiClickAction.APPLY_TAG.getAction()).onClick(this, this.getOwner(), tag, slot);
